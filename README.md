@@ -1,6 +1,14 @@
-# DiffHDR
+# DiffHDR: Re-Exposing LDR Videos with Video Diffusion Models (ECCV 2026)
 
-HDR video reconstruction from LDR input using LoRA-finetuned Wan2.1-VACE-14B diffusion model.
+[![Project Page](https://img.shields.io/badge/Project-Page-yellow?logo=googlechrome&logoColor=yellow)](https://eyeline-labs.github.io/DiffHDR/)
+[![Paper](https://img.shields.io/badge/Paper-arXiv-b31b1b?logo=arxiv&logoColor=red)](https://arxiv.org/abs/2604.06161)
+[![Hugging Face](https://img.shields.io/badge/%F0%9F%A4%97%20Hugging%20Face-DiffHDR-blue)](https://huggingface.co/ZhengmingYu/DiffHDR)
+[![Demo Video](https://img.shields.io/badge/Demo-Video-red?logo=youtube&logoColor=white)](https://youtu.be/kq8qZfwBRs0)
+
+[Zhengming Yu](https://yzmblog.github.io/)<sup>1,2</sup>, [Li Ma](https://limacv.github.io/homepage/)<sup>2</sup>, [Mingming He](https://mingminghe.com/)<sup>2</sup>, [Leo Isikdogan](https://isikdogan.com/)<sup>3</sup>, [Yuancheng Xu](https://yuancheng-xu.github.io/)<sup>3</sup>, [Dmitriy Smirnov](https://dsmirnov.com/)<sup>3</sup>, [Pablo Salamanca](https://pablosalaman.ca/)<sup>3</sup>, [Dao Mi](#)<sup>3</sup>, [Pablo Delgado](#)<sup>3</sup>, [Ning Yu](https://ningyu1991.github.io/)<sup>3</sup>, [Julien Philip](https://julienphilip.com/)<sup>2</sup>, [Xin Li](https://people.tamu.edu/~xinli/)<sup>1</sup>, [Wenping Wang](https://engineering.tamu.edu/cse/profiles/Wang-Wenping.html)<sup>1</sup>, [Paul Debevec](https://www.debevec.org/)<sup>3</sup><br/>
+<sup>1</sup>Texas A&amp;M University, <sup>2</sup>Eyeline Labs, <sup>3</sup>Netflix<br/>
+
+HDR video reconstruction from LDR input using a LoRA-finetuned Wan2.1-VACE-14B diffusion model.
 
 
 ## Setup
