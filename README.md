@@ -12,12 +12,12 @@
   <img src="./assets/teaser.png" alt="DiffHDR teaser figure">
 </p>
 
-## Abstract
+## 📝 Abstract
 
 > Most digital videos are stored in 8-bit low dynamic range (LDR) formats, where much of the original high dynamic range (HDR) scene radiance is lost due to saturation and quantization. This loss of highlight and shadow detail precludes mapping accurate luminance to HDR displays and limits meaningful re-exposure in post-production workflows. Although techniques have been proposed to convert LDR images to HDR through dynamic range expansion, they struggle to restore realistic detail in over- and underexposed regions. To address this, we present **DiffHDR**, a framework that formulates LDR-to-HDR conversion as a generative radiance inpainting task in the latent space of a video diffusion model. By operating in Log-Gamma color space, DiffHDR leverages spatio-temporal generative priors from a pretrained video diffusion model to synthesize plausible HDR radiance in over- and underexposed regions while recovering the continuous scene radiance. Our framework further enables controllable LDR-to-HDR video conversion guided by text prompts or reference images. To address the scarcity of paired HDR video data, we develop a pipeline that synthesizes high-quality HDR video training data from static HDRI maps. Extensive experiments demonstrate that DiffHDR significantly outperforms state-of-the-art approaches in radiance fidelity and temporal stability, producing realistic HDR videos with considerable latitude for re-exposure.
 
 
-## Setup
+## 🛠️ Setup
 
 ```bash
 conda create -n diffhdr python=3.10 -y
@@ -34,8 +34,6 @@ pip install -r requirements.txt
 ```
 
 ### Base model
-
-The `hf` CLI used below ships with `huggingface_hub`, which `requirements.txt` already installs.
 
 Download Wan2.1-VACE-14B (~75 GB). This single repo contains everything needed --
 the 7 DiT shards, the T5 text encoder, the VAE, and the umt5-xxl tokenizer:
@@ -83,7 +81,7 @@ pip install flash_attn --no-build-isolation
 ```
 
 
-## Inference
+## 🎥 Inference
 
 Our paper results were produced with the default `--num_inference_steps 50`. In
 practice we found that 10 steps gives comparable quality on many cases, so the
@@ -133,27 +131,6 @@ python infer_video.py \
     --add_mask --crop_and_resize --srgb_to_lg
 ```
 
-**Key arguments:**
-| Argument | Default | Description |
-|----------|---------|-------------|
-| `--lora_path` | `models/DiffHDR.safetensors` | Path to LoRA weights |
-| `--prompt` | `""` | Text prompt for conditioning |
-| `--reference_image_path` | None | Reference image for image-conditioned generation |
-| `--reference_image_ev` | 5.0 | EV boost applied to reference image before Log conversion |
-| `--height` / `--width` | 720 / 1280 | Output resolution |
-| `--num_frames` | 33 | Number of frames to generate |
-| `--num_inference_steps` | 50 | Diffusion denoising steps |
-| `--seed` | 10 | Random seed |
-| `--srgb_to_lg` | on | Convert sRGB to Log (`lg`) — log-gamma-encoded linear Rec. 709 |
-| `--add_mask` | flag | Compute exposure masks |
-| `--use_under_exposure_mask` | flag | Include under-exposure mask |
-| `--crop_and_resize` | flag | Center-crop to target aspect ratio |
-| `--vace_use_cfa` | flag | Enable Context Focus Attention in VACE encoder |
-| `--wan_dit_use_cfa` | flag | Enable Context Focus Attention in DiT |
-| `--alpha_init` | 0.0 | CFA initial alpha value |
-| `--alpha_over_init` | None | CFA alpha for over-exposed regions |
-| `--alpha_under_init` | None | CFA alpha for under-exposed regions |
-
 ### Single Image
 
 ```bash
@@ -187,7 +164,7 @@ python infer_long_video.py \
 
 ### HDRI Panorama
 
-For single LDR panorama images (e.g., 360 environment maps):
+For single LDR panorama images (We extend this work to [HDRI](https://eyeline-labs.github.io/HDRI/)):
 
 ```bash
 python infer_hdri.py \
@@ -198,7 +175,7 @@ python infer_hdri.py \
 
 This uses overexposure mask detection (luma + channel clipping) and outputs a single HDR EXR panorama at 1024x2048 by default.
 
-## Eval
+## 📊 Eval
 Evaluate generated HDR EXR frames using `eval/cal_sample.py`:
 
 ```bash
@@ -232,23 +209,18 @@ python eval/cal_sample.py \
 For HDR-VDP-3, we follow LEDiff to use the Matlab scripts, please refer the `run_hdrvdp3_dir.m` for the configuration details.
 
 
-## Training
+## 🏋️ Training
 
 ```bash
 # Launch LoRA training
 bash scripts/train.sh
 ```
 
-The training script uses HuggingFace Accelerate for distributed training. Edit `scripts/train.sh` to adjust:
-- `--output_path`: where checkpoints are saved
-- `--max_train_steps`: total training steps
-- `--learning_rate`: learning rate (default 1e-4)
-- `--lora_rank`: LoRA rank (default 32)
-- `--batch_size`: per-GPU batch size
+The training script uses HuggingFace Accelerate for distributed training.
 
 **Training data format:** EXR frames organized by the metadata CSV, with sRGB LDR and linear HDR pairs.
 
-## Citation
+## 📚 Citation
 
 ```bibtex
 @article{yu2026diffhdr,
@@ -260,29 +232,24 @@ The training script uses HuggingFace Accelerate for distributed training. Edit `
 ```
 
 
-## Acknowledgements
+## 🙏 Acknowledgements
 Our work is built upon many awesome prior works:
 
 - **[DiffSynth-Studio](https://github.com/modelscope/DiffSynth-Studio)** --
   the `diffsynth/` package in this repository is a reduced, modified fork of it.
 - **[Wan2.1-VACE-14B](https://huggingface.co/Wan-AI/Wan2.1-VACE-14B)** --
   the base video diffusion model that our LoRA is trained on top of.
-- `demo/sample_image.png` is from the **SI-HDR** dataset, released with
-  Hanji et al., *Comparison of single image HDR reconstruction methods -- the caveats
-  of quality assessment*, SIGGRAPH 2022
-  ([project page](https://www.cl.cam.ac.uk/research/rainbow/projects/sihdr_benchmark/),
-  [dataset](https://doi.org/10.17863/CAM.87333)).
   
 We thank these authors for their great works and open-source contribution.
 
 
 
 
-## License
+## 📄 License
 
 This project is released under the licence in [LICENSE](LICENSE).
 
 It bundles third-party code: `diffsynth/` is derived from
 [DiffSynth-Studio](https://github.com/modelscope/DiffSynth-Studio), licensed under
-Apache-2.0. Files in that directory have been modified from the originals; the
+Apache-2.0. Files in that directory have been modified from the originals. The
 upstream copyright and licence terms continue to apply to them.
