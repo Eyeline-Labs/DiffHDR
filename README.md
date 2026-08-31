@@ -5,10 +5,16 @@
 [![Hugging Face](https://img.shields.io/badge/%F0%9F%A4%97%20Hugging%20Face-DiffHDR-blue)](https://huggingface.co/ZhengmingYu/DiffHDR)
 [![Demo Video](https://img.shields.io/badge/Demo-Video-red?logo=youtube&logoColor=white)](https://youtu.be/kq8qZfwBRs0)
 
-[Zhengming Yu](https://yzmblog.github.io/)<sup>1,2</sup>, [Li Ma](https://limacv.github.io/homepage/)<sup>2</sup>, [Mingming He](https://mingminghe.com/)<sup>2</sup>, [Leo Isikdogan](https://isikdogan.com/)<sup>3</sup>, [Yuancheng Xu](https://yuancheng-xu.github.io/)<sup>3</sup>, [Dmitriy Smirnov](https://dsmirnov.com/)<sup>3</sup>, [Pablo Salamanca](https://pablosalaman.ca/)<sup>3</sup>, [Dao Mi](#)<sup>3</sup>, [Pablo Delgado](#)<sup>3</sup>, [Ning Yu](https://ningyu1991.github.io/)<sup>3</sup>, [Julien Philip](https://julienphilip.com/)<sup>2</sup>, [Xin Li](https://people.tamu.edu/~xinli/)<sup>1</sup>, [Wenping Wang](https://engineering.tamu.edu/cse/profiles/Wang-Wenping.html)<sup>1</sup>, [Paul Debevec](https://www.debevec.org/)<sup>3</sup><br/>
+[Zhengming Yu](https://yzmblog.github.io/)<sup>1,2</sup>, [Li Ma](https://limacv.github.io/homepage/)<sup>2</sup>, [Mingming He](https://mingminghe.com/)<sup>2</sup>, [Leo Isikdogan](https://isikdogan.com/)<sup>3</sup>, [Yuancheng Xu](https://yuancheng-xu.github.io/)<sup>2,3</sup>, [Dmitriy Smirnov](https://dsmirnov.com/)<sup>3</sup>, [Pablo Salamanca](https://pablosalaman.ca/)<sup>2,3</sup>, [Dao Mi](#)<sup>3</sup>, [Pablo Delgado](#)<sup>3</sup>, [Ning Yu](https://ningyu1991.github.io/)<sup>2,3</sup>, [Julien Philip](https://julienphilip.com/)<sup>2</sup>, [Xin Li](https://people.tamu.edu/~xinli/)<sup>1</sup>, [Wenping Wang](https://engineering.tamu.edu/cse/profiles/Wang-Wenping.html)<sup>1</sup>, [Paul Debevec](https://www.debevec.org/)<sup>2,3</sup><br/>
 <sup>1</sup>Texas A&amp;M University, <sup>2</sup>Eyeline Labs, <sup>3</sup>Netflix<br/>
 
-HDR video reconstruction from LDR input using a LoRA-finetuned Wan2.1-VACE-14B diffusion model.
+<p align="center">
+  <img src="./assets/teaser.png" alt="DiffHDR teaser figure">
+</p>
+
+## Abstract
+
+> Most digital videos are stored in 8-bit low dynamic range (LDR) formats, where much of the original high dynamic range (HDR) scene radiance is lost due to saturation and quantization. This loss of highlight and shadow detail precludes mapping accurate luminance to HDR displays and limits meaningful re-exposure in post-production workflows. Although techniques have been proposed to convert LDR images to HDR through dynamic range expansion, they struggle to restore realistic detail in over- and underexposed regions. To address this, we present **DiffHDR**, a framework that formulates LDR-to-HDR conversion as a generative radiance inpainting task in the latent space of a video diffusion model. By operating in Log-Gamma color space, DiffHDR leverages spatio-temporal generative priors from a pretrained video diffusion model to synthesize plausible HDR radiance in over- and underexposed regions while recovering the continuous scene radiance. Our framework further enables controllable LDR-to-HDR video conversion guided by text prompts or reference images. To address the scarcity of paired HDR video data, we develop a pipeline that synthesizes high-quality HDR video training data from static HDRI maps. Extensive experiments demonstrate that DiffHDR significantly outperforms state-of-the-art approaches in radiance fidelity and temporal stability, producing realistic HDR videos with considerable latitude for re-exposure.
 
 
 ## Setup
