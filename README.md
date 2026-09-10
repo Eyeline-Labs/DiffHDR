@@ -223,11 +223,12 @@ The training script uses HuggingFace Accelerate for distributed training.
 ## 📚 Citation
 
 ```bibtex
-@article{yu2026diffhdr,
+@inproceedings{yu2026diffhdr,
   title={DiffHDR: Re-Exposing LDR Videos with Video Diffusion Models},
-  author={Yu, Zhengming and Ma, Li and He, Mingming and Isikdogan, Leo and Xu, Yuancheng and Smirnov, Dmitriy and Salamanca, Pablo and Mi, Dao and Delgado, Pablo and Yu, Ning and others},
-  journal={arXiv preprint arXiv:2604.06161},
-  year={2026}
+  author={Yu, Zhengming and Ma, Li and He, Mingming and Isikdogan, Leo and Xu, Yuancheng and Smirnov, Dmitriy and Salamanca, Pablo and Mi, Dao and Delgado, Pablo and Yu, Ning and Philip, Julien and Li, Xin and Wang, Wenping and Debevec, Paul},
+  booktitle={European Conference on Computer Vision},
+  year={2026},
+  organization={Springer}
 }
 ```
 
